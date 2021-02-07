@@ -103,7 +103,7 @@ public class ImmutableFst extends Fst {
      * @param in
      *            the ObjectInputStream. It should be already be initialized by
      *            the caller.
-     * @return
+     * @return Created FST
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -228,8 +228,8 @@ public class ImmutableFst extends Fst {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Fst(start=" + start + ", isyms=" + isyms + ", osyms="
-                + osyms + ", semiring=" + semiring + ")\n");
+        sb.append("Fst(start=" + start + ", isyms=" + Arrays.toString(isyms) + ", osyms="
+                + Arrays.toString(osyms) + ", semiring=" + semiring + ")\n");
         int numStates = states.length;
         for (int i = 0; i < numStates; i++) {
             State s = states[i];
@@ -261,6 +261,11 @@ public class ImmutableFst extends Fst {
         if (!super.equals(obj))
             return false;
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+      return Arrays.hashCode(states) + super.hashCode();
     }
 
 }
