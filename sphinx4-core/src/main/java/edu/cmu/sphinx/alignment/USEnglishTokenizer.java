@@ -999,8 +999,8 @@ public class USEnglishTokenizer implements TextTokenizer {
                 // is at least 3 letters long, is an alphabet sequence,
                 // and has a comma.
                 boolean previousIsCity =
-                        (previous.length() > 2
-                                && Character.isUpperCase(previous.charAt(0))
+                        (Character.isUpperCase(previous.charAt(0))
+                                && previous.length() > 2
                                 && matches(alphabetPattern, previous) && tokenItem
                                 .findFeature("p.punc").equals(","));
 

@@ -59,17 +59,4 @@ public class LiveSpeechRecognizer extends AbstractSpeechRecognizer {
         microphone.stopRecording();
         recognizer.deallocate();
     }
-
-
-    /**
-     * Stops Recognition process.
-     *
-     * Closes the Microphone Connection and Data Line is made available for other applications.
-     */
-
-    public void closeRecognizer(){
-        microphone.stopRecording();
-        recognizer.deallocate();
-        microphone.closeConnection();
-    }
 }

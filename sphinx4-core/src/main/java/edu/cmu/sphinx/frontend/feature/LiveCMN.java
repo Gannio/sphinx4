@@ -78,7 +78,7 @@ public class LiveCMN extends BaseDataProcessor {
     private double[] sum; // array of current sums
     private int numberFrame; // total number of input Cepstrum
 
-    List<Data> initialList = new LinkedList<Data>();
+    List<Data> initialList;
 
     public LiveCMN(double initialMean, int cmnWindow, int cmnShiftWindow, int initialCmnWindow) {
         initLogger();
@@ -108,10 +108,13 @@ public class LiveCMN extends BaseDataProcessor {
     /**
      * Initializes the currentMean and sum arrays with the given cepstrum
      * length.
+     * 
+     * @param cepstrumLength
+     *            the length of the cepstrum
      */
     private void initMeansSums() {
         int size = -1;
-
+        
         for (Data data : initialList) {
             if (!(data instanceof DoubleData))
                 continue;
@@ -158,8 +161,9 @@ public class LiveCMN extends BaseDataProcessor {
 
         Data input, output;
 
-        // Collect initial data for estimation
-        if (sum == null) {
+        if (initialList == null) {
+            initialList = new LinkedList<Data>();
+            // Collect initial data for estimation
             while (initialList.size() < initialCmnWindow) {
                 input = getPredecessor().getData();
                 initialList.add(input);
@@ -185,7 +189,7 @@ public class LiveCMN extends BaseDataProcessor {
      * Normalizes the given Data with using the currentMean array. Updates the
      * sum array with the given Data.
      * 
-     * @param data
+     * @param cepstrumObject
      *            the Data object to normalize
      */
     private void normalize(Data data) {

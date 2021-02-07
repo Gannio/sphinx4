@@ -58,6 +58,9 @@ public class AllphoneDemo {
             for (WordResult r : speechResult.getWords()) {
                 System.out.println(r);
             }
+
+            System.out.println("Lattice contains "
+                    + speechResult.getLattice().getNodes().size() + " nodes");
         }
         recognizer.deallocate();
 

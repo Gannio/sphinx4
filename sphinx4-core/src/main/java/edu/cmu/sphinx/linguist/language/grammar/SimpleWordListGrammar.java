@@ -78,7 +78,6 @@ public class SimpleWordListGrammar extends Grammar implements Configurable {
         
         path = ps.getString(PROP_PATH);
         isLooping = ps.getBoolean(PROP_LOOP);
-        logMath = LogMath.getLogMath();
     }
 
 

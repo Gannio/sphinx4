@@ -202,7 +202,7 @@ public class Graph {
      * @param edge edge to check
      * @return if edge in the graph
      */
-    public boolean isEdgeInGraph(Edge edge) {
+    public boolean isEdgeInGraph(Node edge) {
         return edges.contains(edge);
     }
 

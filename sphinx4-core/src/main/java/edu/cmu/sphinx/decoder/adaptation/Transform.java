@@ -135,6 +135,7 @@ public class Transform {
 
         Scanner input = new Scanner(new File(filePath));
         int numStreams, nMllrClass;
+        int[] vectorLength = new int[1];
 
         nMllrClass = input.nextInt();
 
@@ -142,26 +143,25 @@ public class Transform {
 
         numStreams = input.nextInt();
 
-        this.As = new float[nMllrClass][numStreams][][];
-        this.Bs = new float[nMllrClass][numStreams][];
+        this.As = new float[nMllrClass][][][];
+        this.Bs = new float[nMllrClass][][];
 
         for (int i = 0; i < numStreams; i++) {
-            int length = input.nextInt();
+            vectorLength[i] = input.nextInt();
 
-            this.As[0][i] = new float[length][length];
-            this.Bs[0][i] = new float[length];
+            int length = vectorLength[i];
+
+            this.As[0] = new float[numStreams][length][length];
+            this.Bs[0] = new float[numStreams][length];
 
             for (int j = 0; j < length; j++) {
-                for (int k = 0; k < length; k++) {
+                for (int k = 0; k < length; ++k) {
                     As[0][i][j][k] = input.nextFloat();
                 }
             }
+
             for (int j = 0; j < length; j++) {
                 Bs[0][i][j] = input.nextFloat();
-            }
-            for (int j = 0; j < length; j++) {
-                // Skip MLLR variance scale
-                input.nextFloat();
             }
         }
         input.close();

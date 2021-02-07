@@ -50,6 +50,7 @@ public class MixtureComponent implements Cloneable, Serializable {
     public static final float DEFAULT_DIST_FLOOR = 0.0f;
 
     protected float logPreComputedGaussianFactor;
+    protected LogMath logMath;
     
     /**
      * Create a MixtureComponent with the given sub components.
@@ -108,6 +109,7 @@ public class MixtureComponent implements Cloneable, Serializable {
 
         assert variance.length == mean.length;
 
+        logMath = LogMath.getLogMath();
         this.mean = mean;
         this.meanTransformationMatrix = meanTransformationMatrix;
         this.meanTransformationVector = meanTransformationVector;
@@ -116,7 +118,7 @@ public class MixtureComponent implements Cloneable, Serializable {
         this.varianceTransformationVector = varianceTransformationVector;
 
         assert distFloor >= 0.0 : "distFloot seems to be already in log-domain";
-        this.distFloor = LogMath.getLogMath().linearToLog(distFloor);
+        this.distFloor = logMath.linearToLog(distFloor);
         this.varianceFloor = varianceFloor;
 
         transformStats();
@@ -193,7 +195,7 @@ public class MixtureComponent implements Cloneable, Serializable {
         // the argument of the exponential in the javadoc comment.
 
         // Convert to the appropriate base.
-        logDval = LogMath.getLogMath().lnToLog(logDval);
+        logDval = logMath.lnToLog(logDval);
 
         // System.out.println("MC: getscore " + logDval);
 

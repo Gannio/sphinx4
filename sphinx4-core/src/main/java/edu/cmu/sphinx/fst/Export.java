@@ -35,10 +35,9 @@ public class Export {
      * - basename.input.syms
      * - basename.output.syms
      * - basename.fst.txt
-     * First argument is the java binary model filename, second
-     * argument openfst's files basename
-     *
-     * @param args arguments
+     * 
+     * @param args[0] the java binary model filename 
+     * @param args[1] openfst's files basename
      * @throws IOException IO went wrong
      * @throws ClassNotFoundException loading failed due to failed serialization
      */
